@@ -1,0 +1,77 @@
+<!--<!doctype html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport"-->
+<!--          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">-->
+<!--    <meta http-equiv="X-UA-Compatible" content="ie=edge">-->
+<!--    <title>ToDo list</title>-->
+
+<!--  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>-->
+<!--  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>-->
+
+<!--</head>-->
+<!--<body>-->
+<!--<div style="..." class="ui container">-->
+<!--  <h1 class="ui center aligned header">ToDo App</h1>-->
+
+<!--  <hr>-->
+
+<!--  {% for item in todo_list %}-->
+<!--    <div class="ui segment">-->
+<!--      <p>{{ item.id }} | {{ item.title }}</p>-->
+<!--    </div>-->
+<!--  {% endfor %}-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>To Do App</title>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+
+</head>
+<body>
+<div class="ui container">
+    <h1 class="ui center aligned header">To Do App</h1>
+    <form action="/add" method="post" class="ui form">
+        <div class="field">
+            <label>Todo Title: </label>
+            <input type="text" name="title" placeholder="Enter todo item...">
+            <br>
+        </div>
+        <button class="ui blue button" type="submit">Add</button>
+    </form>
+
+    <hr>
+
+    {% for item in todo_list %}
+    <div class="ui segment">
+        <p class="ui big header">
+            {{ item.id }} | {{ item.title }}
+        </p>
+
+        {% if item.completed == False %}
+            <span class="ui gray label">
+                Not Completed
+            </span>
+        {% else %}
+            <span class="ui green label">
+                Completed
+            </span>
+        {% endif %}
+        <a href="/update/{{ item.id }}" class="ui blue button">Update</a>
+        <a href="/delete/{{ item.id }}" class="ui red button">Delete</a>
+
+    </div>
+    {% endfor %}
+</div>
+</body>
+</html>
