@@ -14,4 +14,3 @@ def test2():
 def test3():
     response = app.test_client().get('/update')
     assert b"To Do App" in response.data
-    assert b"To Do title" in response.data
